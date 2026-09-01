@@ -3,7 +3,6 @@
 /** @var array $old */
 /** @var array $erreurs */
 $titrePage = "Connexion";
-require __DIR__ . '/partials/header.php';
 
 ?>
 
