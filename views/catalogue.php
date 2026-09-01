@@ -14,7 +14,6 @@
                 <div class="produit-carte" style="border: 1px solid #ccc; padding: 15px; width: 250px; border-radius: 8px;">
                     
                     <?php 
-                    
                         if ($produit['type'] === 'display') {
                             $hauteurImage = '160px';
                             $styleObjet = 'object-fit: contain; background-color: #f9f9f9;';
@@ -23,7 +22,7 @@
                             $styleObjet = 'object-fit: contain; background-color: #f9f9f9;';
                         } else {
                             $hauteurImage = '280px'; 
-                            if ($produit['nom_produit'] === 'Le canard obscure') {
+                            if ($produit['nom_produit'] === 'Le canard obscur') {
                                 $styleObjet = 'object-fit: cover; object-position: right center;';
                             } else {
                                 $styleObjet = 'object-fit: cover;';
@@ -36,15 +35,19 @@
 
                     <h3><?= htmlspecialchars($produit['nom_produit']) ?></h3>
                     
-                    <p><strong>Prix :</strong> <?= htmlspecialchars($produit['prix']) ?> €</p>
-                    <p><strong>Type :</strong> <?= htmlspecialchars($produit['type']) ?></p>
                     <p><?= htmlspecialchars($produit['description']) ?></p>
                     
                     <?php if (!empty($produit['rarete'])): ?>
                         <p><em>Rareté : <?= htmlspecialchars($produit['rarete']) ?></em></p>
                     <?php endif; ?>
 
-                    <p><strong>Stock :</strong> <?= htmlspecialchars($produit['stock']) ?> restants</p>
+                    <?php if ($produit['type'] === 'carte'): ?>
+                        <p style="color: #666; font-style: italic;">Carte de collection</p>
+                    <?php else: ?>
+                        <p><strong>Prix :</strong> <?= htmlspecialchars($produit['prix']) ?> €</p>
+                        <p><strong>Stock :</strong> <?= htmlspecialchars($produit['stock']) ?> restants</p>
+                    <?php endif; ?>
+
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
