@@ -7,16 +7,28 @@ class Database {
     private $password = '';
     private ?PDO $conn = null;
 
-    public function getConnection() {
-        $this->conn = null;
-
-        try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname . ";charset=utf8", $this->username, $this->password);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch(PDOException $exception) {
-            echo "Erreur de connexion : " . $exception->getMessage();
+    public function getConnection(): ?PDO {
+        if ($this->conn !== null) {
+            return $this->conn;
         }
 
+        try {
+        $dsn = "mysql:host={$this->host};dbname={$this->dbname};charset=utf8mb4";
+
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            ];
+
+         $this->conn = new PDO($dsn, $this->username, $this->password, $options);
+
+         } catch (PDOException $e) {
+            error_log('Erreur de connexion BDD : ' . $e->getMessage());
+
+            throw new RuntimeException('Le service est momentanément indisponible.');
+        }
+        
         return $this->conn;
     }
 }

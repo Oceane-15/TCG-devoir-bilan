@@ -20,8 +20,8 @@ CREATE TABLE produits (
     produit_id INT AUTO_INCREMENT PRIMARY KEY,
     nom_produit VARCHAR(100) NOT NULL,
     `description` TEXT NOT NULL,
-    prix DECIMAL(6,2) NOT NULL CHECK (prix > 0),
-    stock INT NOT NULL CHECK (stock >= 0),
+    prix DECIMAL(6,2) DEFAULT NULL CHECK (prix IS NULL OR prix > 0),
+    stock INT DEFAULT NULL CHECK (stock IS NULL OR stock >= 0),
     `type` ENUM('carte', 'booster', 'display') NOT NULL,
     rarete ENUM('Commune', 'Rare', 'Légendaire') DEFAULT NULL,
     image_url VARCHAR(255) NOT NULL,
@@ -56,10 +56,12 @@ CREATE TABLE commande_produits (
 -- Insertion des produits de test
 
 INSERT INTO produits (nom_produit, `description`, prix, stock, `type`, rarete, image_url) VALUES 
-('Le chat maléfique', 'Carte ultra rare holographique.', 29.99, 5, 'carte', 'Légendaire', 'assets/img/le_chat_malefique.jpg'),
-('Le chien endormi', 'Carte commune.', 2.99, 40, 'carte', 'Commune', 'assets/img/le_chien_endormi.jpg'),
-('Le lapin magique', 'Carte rare aux pouvoirs psychiques redoutables.', 19.99, 10, 'carte', 'Rare', 'assets/img/le_lapin_magique.jpg'),
-('Le canard obscure', 'Carte rare avec une défense impénétrable.', 14.99, 15, 'carte', 'Rare', 'assets/img/le_canard_obscure.jpg'),
+('Le chat maléfique', 'Carte ultra rare holographique.', NULL, NULL, 'carte', 'Légendaire', 'assets/img/le_chat_malefique.jpg'),
+('Le chien endormi', 'Carte commune.', NULL, NULL, 'carte', 'Commune', 'assets/img/le_chien_endormi.jpg'),
+('Le lapin magique', 'Carte rare aux pouvoirs psychiques redoutables.', NULL, NULL, 'carte', 'Rare', 'assets/img/le_lapin_magique.jpg'),
+('Le canard obscur', 'Carte rare avec une défense impénétrable.', NULL, NULL, 'carte', 'Rare', 'assets/img/le_canard_obscure.jpg'),
+('Teckel inquiet', 'Carte commune.', NULL, NULL, 'carte', 'Commune', 'assets/img/teckel_inquiet.jpg'),
+('Le cheval de troie', 'Carte ultra rare holographique.', NULL, NULL, 'carte', 'Légendaire', 'assets/img/cheval_de_troie.jpg'),
 ('Booster Série 1', 'Sachet contenant 10 cartes aléatoires de la première extension.', 4.99, 100, 'booster', NULL, 'assets/img/booster_animal.png'),
 ('Display Collector - Boîte de 10 Boosters', 'Boîte scellée contenant 10 boosters de la première extension.', 44.99, 20, 'display', NULL, 'assets/img/display_animal.png');
 
