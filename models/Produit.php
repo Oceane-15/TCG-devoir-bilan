@@ -19,8 +19,8 @@ class Produit {
             
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
             
-        } catch (PDOException $exception) {
-            echo "Erreur de requête : " . $exception->getMessage();
+        } catch (PDOException $e) {
+            error_log('Erreur getAllProduits : ' . $e->getMessage());
             return [];
         }
     }
