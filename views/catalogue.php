@@ -1,58 +1,32 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue - TCG Shop</title>
-</head>
-<body>
-    <h1>Catalogue de nos cartes</h1>
+<?php $titrePage = "Les cartes"; require __DIR__ . '/partials/header.php'; ?>
 
-    <div class="produits-container" style="display: flex; flex-wrap: wrap; gap: 20px;">
+<main class="catalogue container">
+    <h1 class="catalogue__titre">Les cartes</h1>
+
+    <div class="row justify-content-center g-4">
         <?php if (!empty($produits)): ?>
             <?php foreach ($produits as $produit): ?>
-                <div class="produit-carte" style="border: 1px solid #ccc; padding: 15px; width: 250px; border-radius: 8px;">
-                    
-                    <?php 
-                        if ($produit['type'] === 'display') {
-                            $hauteurImage = '160px';
-                            $styleObjet = 'object-fit: contain; background-color: #f9f9f9;';
-                        } elseif ($produit['type'] === 'booster') {
-                            $hauteurImage = '150px'; 
-                            $styleObjet = 'object-fit: contain; background-color: #f9f9f9;';
-                        } else {
-                            $hauteurImage = '280px'; 
-                            if ($produit['nom_produit'] === 'Le canard obscur') {
-                                $styleObjet = 'object-fit: cover; object-position: right center;';
-                            } else {
-                                $styleObjet = 'object-fit: cover;';
-                            }
-                        }
-                    ?>
-                    <img src="<?= htmlspecialchars($produit['image_url']) ?>" 
-                         alt="<?= htmlspecialchars($produit['nom_produit']) ?>" 
-                         style="width: 100%; height: <?= $hauteurImage ?>; <?= $styleObjet ?> border-radius: 4px;">
+                <?php if ($produit['type'] === 'carte') { continue; }?>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <article class="produit-carte">
+                        <div class="produit-carte__media">
+                            <img src="<?= e($produit['image_url']) ?>" alt="<?= e($produit['nom_produit']) ?>" class="produit-carte__image">
+                        </div>
+                        <h2 class="produit-carte__nom"><?= e($produit['nom_produit']) ?></h2>
+                        <p class="produit-carte__prix"><?= e(number_format((float) $produit['prix'], 2, ',', ' ')) ?> €</p>
 
-                    <h3><?= htmlspecialchars($produit['nom_produit']) ?></h3>
-                    
-                    <p><?= htmlspecialchars($produit['description']) ?></p>
-                    
-                    <?php if (!empty($produit['rarete'])): ?>
-                        <p><em>Rareté : <?= htmlspecialchars($produit['rarete']) ?></em></p>
-                    <?php endif; ?>
-
-                    <?php if ($produit['type'] === 'carte'): ?>
-                        <p style="color: #666; font-style: italic;">Carte de collection</p>
-                    <?php else: ?>
-                        <p><strong>Prix :</strong> <?= htmlspecialchars($produit['prix']) ?> €</p>
-                        <p><strong>Stock :</strong> <?= htmlspecialchars($produit['stock']) ?> restants</p>
-                    <?php endif; ?>
-
+                        <form action="index.php?route=panier-ajouter" method="post">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="produit_id" value="<?= e($produit['produit_id']) ?>">
+                            <button type="submit" class="produit-carte__bouton">Ajouter au panier</button>
+                        </form>
+                    </article>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
-            <p>Aucun produit trouvé.</p>
+            <p>Aucun produit disponible.</p>
         <?php endif; ?>
     </div>
-</body>
-</html>
+</main>
+
+<?php require __DIR__ . '/partials/footer.php'; ?>

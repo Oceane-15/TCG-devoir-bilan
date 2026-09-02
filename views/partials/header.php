@@ -1,4 +1,5 @@
 <?php ?>
+<?php $panierResume = panier_resume(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

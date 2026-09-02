@@ -4,9 +4,9 @@ if (session_status() === PHP_SESSION_NONE) {
     $secure = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 
     session_set_cookie_params([
-        'httponly' => true,    
-        'secure'   => $secure, 
-        'samesite' => 'Lax',   
+        'httponly' => true,
+        'secure'   => $secure,
+        'samesite' => 'Lax',
     ]);
     session_start();
 }
@@ -42,4 +42,35 @@ function est_connecte(): bool {
 
 function est_admin(): bool {
     return est_connecte() && (($_SESSION['role'] ?? '') === 'admin');
+}
+
+
+function panier_resume(): array {
+    $panier = $_SESSION['panier'] ?? [];
+    $lignes = [];
+    $total  = 0.0;
+    $nb     = 0;
+
+    if (!empty($panier)) {
+        require_once __DIR__ . '/../models/Produit.php';
+        $model = new Produit();
+
+        foreach ($panier as $produitId => $quantite) {
+            $produit = $model->trouverParId((int) $produitId);
+            if ($produit === null) {
+                continue;
+            }
+            $sousTotal = (float) $produit['prix'] * $quantite;
+            $total    += $sousTotal;
+            $nb       += $quantite;
+
+            $lignes[] = [
+                'produit'    => $produit,
+                'quantite'   => $quantite,
+                'sous_total' => $sousTotal,
+            ];
+        }
+    }
+
+    return ['lignes' => $lignes, 'total' => $total, 'nb' => $nb];
 }
