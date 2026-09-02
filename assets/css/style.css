@@ -335,3 +335,43 @@ form {
   height: 20px;
   fill: #fff;
 }
+
+.erreur-404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.erreur-404__image {
+  max-width: 660px;
+  width: 140%;
+  height: auto;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+.erreur-404__texte {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 700;
+  color: #0074C7;
+  font-size: 26px;
+  margin-bottom: 26px;
+}
+.erreur-404__bouton {
+  display: inline-block;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #fff;
+  background: #82B864;
+  border-radius: 14px;
+  padding: 14px 32px;
+  transition: filter 0.15s, transform 0.05s;
+}
+.erreur-404__bouton:hover {
+  filter: brightness(0.95);
+  color: #fff;
+}
+.erreur-404__bouton:active {
+  transform: scale(0.99);
+}
