@@ -780,3 +780,155 @@ main {
   background: #005a9c;
   color: #fff;
 }
+
+.animaldex {
+  padding: 40px 0 64px;
+}
+.animaldex__titre {
+  text-align: center;
+  font-family: "Baloo 2", sans-serif;
+  text-transform: uppercase;
+  color: #00497C;
+  letter-spacing: 1px;
+  font-size: 30px;
+  margin-bottom: 28px;
+}
+.animaldex__recherche {
+  width: 100%;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  padding: 15px 20px;
+  border: 1.5px solid #7FB4DD;
+  border-radius: 30px;
+  background: #F1F8FC;
+  color: #20486a;
+  margin-bottom: 16px;
+}
+.animaldex__recherche::-moz-placeholder {
+  color: #8FB3CC;
+}
+.animaldex__recherche::placeholder {
+  color: #8FB3CC;
+}
+.animaldex__recherche:focus {
+  outline: none;
+  border-color: #0074C7;
+  box-shadow: 0 0 0 3px rgba(0, 116, 199, 0.18);
+}
+.animaldex__filtres-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #0074C7;
+  background: #fff;
+  border: 1.5px solid #0074C7;
+  border-radius: 24px;
+  padding: 8px 18px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.animaldex__filtres-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.animaldex__filtres {
+  margin-bottom: 20px;
+}
+.animaldex__filtres-groupe {
+  border: 1.5px solid #7FB4DD;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+  align-items: center;
+  background: #F1F8FC;
+}
+.animaldex__filtres-groupe label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.animaldex__filtres-groupe label input {
+  accent-color: #0074C7;
+  width: 17px;
+  height: 17px;
+}
+.animaldex__filtres-legende {
+  font-size: 15px;
+  font-weight: 700;
+  color: #00497C;
+  padding: 0;
+  margin: 0 6px 0 0;
+  width: auto;
+  float: none;
+}
+.animaldex__vide {
+  text-align: center;
+  color: #6a7f8c;
+  font-size: 17px;
+  margin-top: 30px;
+}
+
+.carte-dex {
+  text-align: center;
+}
+.carte-dex--masquee {
+  display: none;
+}
+.carte-dex__cadre {
+  border: 6px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+.carte-dex__cadre--legendaire {
+  border-color: #9B0CBF;
+}
+.carte-dex__cadre--rare {
+  border-color: #CD2C2E;
+}
+.carte-dex__cadre--commune {
+  border-color: #3FA535;
+}
+.carte-dex__image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.carte-dex__nom {
+  display: inline-block;
+  margin-top: 12px;
+  background: #6b6b6b;
+  color: #fff;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 15px;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+.carte-dex__rarete {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.carte-dex__rarete--legendaire {
+  color: #9B0CBF;
+}
+.carte-dex__rarete--rare {
+  color: #CD2C2E;
+}
+.carte-dex__rarete--commune {
+  color: #3FA535;
+}

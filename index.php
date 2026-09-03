@@ -13,6 +13,11 @@ try {
             (new ProduitController())->listerProduits();
             break;
 
+         case 'animaldex':
+            require_once __DIR__ . '/controllers/ProduitController.php';
+            (new ProduitController())->animaldex();
+            break;
+
         case 'inscription':
             require_once __DIR__ . '/controllers/AuthController.php';
             (new AuthController())->inscription();
