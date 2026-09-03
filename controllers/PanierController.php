@@ -11,6 +11,28 @@ class PanierController {
         $this->produitModel = new Produit();
     }
 
+    private function estAjax(): bool {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+            && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+    }
+
+     private function repondrePanier(): void {
+        if ($this->estAjax()) {
+            $panierResume = panier_resume();
+
+            ob_start();
+            require __DIR__ . '/../views/partials/panier_contenu.php';
+            $html = ob_get_clean();
+
+            header('Content-Type: application/json');
+            echo json_encode(['nb' => $panierResume['nb'], 'html' => $html]);
+            exit;
+        }
+
+        $_SESSION['ouvrir_panier'] = true;
+        redirect('catalogue');
+    }
+
     public function ajouter(): void {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !csrf_verifier()) {
             redirect('catalogue');
@@ -23,8 +45,7 @@ class PanierController {
             $_SESSION['panier'][$produitId] = ($_SESSION['panier'][$produitId] ?? 0) + 1;
         }
 
-        $_SESSION['ouvrir_panier'] = true;
-        redirect('catalogue');
+        $this->repondrePanier();;
     }
 
     public function modifier(): void {
@@ -42,8 +63,7 @@ class PanierController {
             $_SESSION['panier'][$produitId] = $quantite;
         }
 
-        $_SESSION['ouvrir_panier'] = true;
-        redirect('catalogue');
+        $this->repondrePanier();
     }
 
     public function supprimer(): void {
@@ -54,8 +74,7 @@ class PanierController {
         $produitId = (int) ($_POST['produit_id'] ?? 0);
         unset($_SESSION['panier'][$produitId]);
 
-        $_SESSION['ouvrir_panier'] = true;
-        redirect('catalogue');
+        $this->repondrePanier();
     }
 
      public function checkout(): void {
