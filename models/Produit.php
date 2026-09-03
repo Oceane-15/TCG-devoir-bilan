@@ -24,5 +24,23 @@ class Produit {
             return [];
         }
     }
+
+public function trouverParId(int $id): ?array {
+    try {
+        $query = "SELECT produit_id, nom_produit, description, prix, stock, type, rarete, image_url
+                  FROM " . $this->table_name . "
+                  WHERE produit_id = :id
+                  LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute([':id' => $id]);
+
+        $produit = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $produit ?: null;
+
+    } catch (PDOException $e) {
+        error_log('Erreur trouverParId : ' . $e->getMessage());
+        return null;
+    }
+}
 }
 ?>

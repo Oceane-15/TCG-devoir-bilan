@@ -1,4 +1,5 @@
 <?php ?>
+<?php $panierResume = panier_resume(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -40,9 +41,13 @@
                     </a>
                 <?php endif; ?>
 
-                <a href="index.php?route=panier" aria-label="Mon panier">
+                <button type="button" class="panier-toggle" aria-label="Mon panier"
+                        data-bs-toggle="offcanvas" data-bs-target="#panierOffcanvas">
                     <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><path d="M3 4h2l2.4 12.2a1.5 1.5 0 001.5 1.2h8.6a1.5 1.5 0 001.5-1.2L22 8H6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.4" fill="#1a1a1a"/><circle cx="18" cy="21" r="1.4" fill="#1a1a1a"/></svg>
-                </a>
+                    <?php if ($panierResume['nb'] > 0): ?>
+                        <span class="panier-badge"><?= (int) $panierResume['nb'] ?></span>
+                    <?php endif; ?>
+                </button>
             </div>
 
             <div class="offcanvas offcanvas-top order-lg-1" tabindex="-1" id="menuMobile" aria-labelledby="menuMobileLabel">

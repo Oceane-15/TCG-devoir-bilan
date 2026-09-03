@@ -1,0 +1,165 @@
+.panier-toggle {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #1a1a1a;
+    display: flex;
+
+    svg { width: 30px; height: 30px; }
+}
+
+.panier-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background: $blue;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.panier-tiroir {
+    background: $input-fill;
+    width: 420px;
+
+    &__titre {
+        font-family: $font-titre;
+        color: $navy;
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
+    &__vide {
+        color: #6a7f8c;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    &__total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid rgba($navy, .15);
+        font-size: 18px;
+        color: $navy;
+        font-weight: 700;
+    }
+
+    &__pied {
+        padding: 16px 20px 20px;
+    }
+
+    &__commander {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-family: $font-titre;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 18px;
+        color: #fff;
+        background: $blue;
+        border-radius: 14px;
+        padding: 16px;
+        transition: background .15s;
+
+        &:hover { background: $blue-dark; color: #fff; }
+    }
+
+    @media (max-width: $bp-mobile) {
+        width: 100%;
+    }
+}
+
+.panier-ligne {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba($navy, .10);
+
+    &__image {
+        width: 84px;
+        height: 84px;
+        object-fit: contain;
+        border-radius: 8px;
+        flex-shrink: 0;
+        background: #fff;
+    }
+
+    &__infos {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__nom {
+        color: $blue;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    &__quantite {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: $blue;
+        border-radius: 20px;
+        padding: 4px 6px;
+        align-self: flex-start;
+
+        form { display: flex; margin: 0; }
+    }
+
+    &__fleche {
+        background: none;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        line-height: 1;
+        cursor: pointer;
+        padding: 2px 8px;
+    }
+
+    &__nombre {
+        color: #fff;
+        font-weight: 700;
+        min-width: 16px;
+        text-align: center;
+    }
+
+    &__droite {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    &__supprimer {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #333;
+        padding: 0;
+
+        svg { width: 22px; height: 22px; }
+        &:hover { color: $erreur; }
+    }
+
+    &__prix {
+        font-weight: 700;
+        font-size: 17px;
+        color: #111;
+    }
+}
