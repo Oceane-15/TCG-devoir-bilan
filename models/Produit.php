@@ -60,4 +60,67 @@ class Produit
             return null;
         }
     }
+
+      public function ajouterProduit(array $d): bool
+    {
+        try {
+            $query = "INSERT INTO " . $this->table_name . "
+                      (nom_produit, description, prix, stock, type, rarete, image_url)
+                      VALUES (:nom, :description, :prix, :stock, :type, :rarete, :image_url)";
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute([
+                ':nom'         => $d['nom_produit'],
+                ':description' => $d['description'],
+                ':prix'        => $d['prix'],
+                ':stock'       => $d['stock'],
+                ':type'        => $d['type'],
+                ':rarete'      => $d['rarete'],
+                ':image_url'   => $d['image_url'],
+            ]);
+        } catch (PDOException $e) {
+            error_log('Erreur ajouterProduit : ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function modifierProduit(int $id, array $d): bool
+    {
+        try {
+            $query = "UPDATE " . $this->table_name . " SET
+                        nom_produit = :nom,
+                        description = :description,
+                        prix        = :prix,
+                        stock       = :stock,
+                        type        = :type,
+                        rarete      = :rarete,
+                        image_url   = :image_url
+                      WHERE produit_id = :id";
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute([
+                ':nom'         => $d['nom_produit'],
+                ':description' => $d['description'],
+                ':prix'        => $d['prix'],
+                ':stock'       => $d['stock'],
+                ':type'        => $d['type'],
+                ':rarete'      => $d['rarete'],
+                ':image_url'   => $d['image_url'],
+                ':id'          => $id,
+            ]);
+        } catch (PDOException $e) {
+            error_log('Erreur modifierProduit : ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function supprimerProduit(int $id): bool{
+    
+        try {
+            $query = "DELETE FROM " . $this->table_name . " WHERE produit_id = :id";
+            $stmt = $this->conn->prepare($query);
+            return $stmt->execute([':id' => $id]);
+        } catch (PDOException $e) {
+            error_log('Erreur supprimerProduit : ' . $e->getMessage());
+            return false;
+        }
+    }
 }
