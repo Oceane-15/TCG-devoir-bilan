@@ -1,4 +1,5 @@
-<?php $titrePage = "Animaldex"; require __DIR__ . '/partials/header.php'; ?>
+<?php $titrePage = "Animaldex";
+require __DIR__ . '/partials/header.php'; ?>
 <?php
 /** @var array $cartes */
 $slugsRarete = ['Commune' => 'commune', 'Rare' => 'rare', 'Légendaire' => 'legendaire'];
@@ -8,11 +9,19 @@ $slugsRarete = ['Commune' => 'commune', 'Rare' => 'rare', 'Légendaire' => 'lege
     <h1 class="animaldex__titre">Animaldex</h1>
 
     <input type="search" id="dexRecherche" class="animaldex__recherche"
-           placeholder="Chercher parmi les cartes..." aria-label="Chercher parmi les cartes">
+        value="<?= e($_GET['q'] ?? '') ?>"
+        placeholder="Chercher parmi les cartes..." aria-label="Chercher parmi les cartes">
 
     <button type="button" class="animaldex__filtres-btn" data-bs-toggle="collapse"
-            data-bs-target="#dexFiltres" aria-expanded="false" aria-controls="dexFiltres">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="2" fill="#fff"/><circle cx="15" cy="12" r="2" fill="#fff"/><circle cx="8" cy="18" r="2" fill="#fff"/></svg>
+        data-bs-target="#dexFiltres" aria-expanded="false" aria-controls="dexFiltres">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+            <circle cx="9" cy="6" r="2" fill="#fff" />
+            <circle cx="15" cy="12" r="2" fill="#fff" />
+            <circle cx="8" cy="18" r="2" fill="#fff" />
+        </svg>
         Filtres
     </button>
 
@@ -28,12 +37,12 @@ $slugsRarete = ['Commune' => 'commune', 'Rare' => 'rare', 'Légendaire' => 'lege
     <div class="row g-4" id="dexGrille">
         <?php foreach ($cartes as $carte): ?>
             <?php
-                $rarete = $carte['rarete'] ?? '';
-                $slug   = $slugsRarete[$rarete] ?? 'commune';
+            $rarete = $carte['rarete'] ?? '';
+            $slug   = $slugsRarete[$rarete] ?? 'commune';
             ?>
             <div class="col-12 col-sm-6 col-lg-4 carte-dex"
-                 data-nom="<?= e(mb_strtolower($carte['nom_produit'])) ?>"
-                 data-rarete="<?= e($rarete) ?>">
+                data-nom="<?= e(mb_strtolower($carte['nom_produit'])) ?>"
+                data-rarete="<?= e($rarete) ?>">
 
                 <div class="carte-dex__cadre carte-dex__cadre--<?= $slug ?>">
                     <img src="<?= e($carte['image_url']) ?>" alt="<?= e($carte['nom_produit']) ?>" class="carte-dex__image">

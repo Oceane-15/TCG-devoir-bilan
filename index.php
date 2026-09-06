@@ -8,12 +8,26 @@ try {
     switch ($route) {
 
         case 'accueil':
+            require_once __DIR__ . '/controllers/PageController.php';
+            (new PageController())->accueil();
+            break;
+
         case 'catalogue':
             require_once __DIR__ . '/controllers/ProduitController.php';
             (new ProduitController())->listerProduits();
             break;
 
-         case 'animaldex':
+        case 'mentions':
+            require_once __DIR__ . '/controllers/PageController.php';
+            (new PageController())->mentions();
+            break;
+
+        case 'cgv':
+            require_once __DIR__ . '/controllers/PageController.php';
+            (new PageController())->cgv();
+            break;
+
+        case 'animaldex':
             require_once __DIR__ . '/controllers/ProduitController.php';
             (new ProduitController())->animaldex();
             break;
@@ -82,13 +96,12 @@ try {
             require_once __DIR__ . '/controllers/AdminController.php';
             (new AdminController())->supprimer();
             break;
-            
+
         default:
             http_response_code(404);
             require __DIR__ . '/views/404.php';
             break;
     }
-    
 } catch (Throwable $e) {
     error_log('Erreur application : ' . $e->getMessage());
     http_response_code(500);

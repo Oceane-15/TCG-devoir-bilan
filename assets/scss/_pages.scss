@@ -1,0 +1,38 @@
+.page-texte {
+    padding: 40px 0 64px;
+
+    &__titre {
+        text-align: center;
+        font-family: $font-titre;
+        text-transform: uppercase;
+        color: $navy;
+        letter-spacing: 1px;
+        font-size: 30px;
+        margin-bottom: 32px;
+    }
+
+    &__contenu {
+        max-width: 760px;
+        margin: 0 auto;
+
+        h2 {
+            font-family: $font-titre;
+            color: $navy;
+            font-size: 20px;
+            margin: 26px 0 10px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 14px;
+            color: $text;
+        }
+
+        a {
+            color: $blue;
+            font-weight: 700;
+
+            &:hover { text-decoration: underline; }
+        }
+    }
+}

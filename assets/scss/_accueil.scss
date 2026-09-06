@@ -1,0 +1,60 @@
+.hero {
+    position: relative;
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &__contenu {
+        position: absolute;
+        top: 12%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: #fff;
+        width: 90%;
+        max-width: 640px;
+    }
+
+    &__marque {
+        font-family: $font-titre;
+        font-weight: 700;
+        font-size: 40px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, .55);
+    }
+
+    &__slogan {
+        font-family: $font-titre;
+        font-weight: 500;
+        font-size: 26px;
+        text-transform: uppercase;
+        margin: 6px 0 22px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, .55);
+    }
+
+    &__bouton {
+        display: inline-block;
+        font-family: $font-titre;
+        font-weight: 600;
+        font-size: 20px;
+        color: #fff;
+        border: 2px solid #fff;
+        border-radius: 30px;
+        padding: 12px 30px;
+        background: rgba(0, 0, 0, .15);
+        transition: background .15s, color .15s;
+
+        &:hover { background: #fff; color: $navy; }
+    }
+
+    @media (max-width: $bp-mobile) {
+        &__contenu { top: 8%; }
+        &__marque { font-size: 26px; }
+        &__slogan { font-size: 16px; margin-bottom: 14px; }
+        &__bouton { font-size: 16px; padding: 9px 20px; }
+    }
+}
