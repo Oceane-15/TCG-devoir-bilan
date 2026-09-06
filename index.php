@@ -63,6 +63,26 @@ try {
             (new PanierController())->confirmation();
             break;
 
+        case 'admin':
+            require_once __DIR__ . '/controllers/AdminController.php';
+            (new AdminController())->liste();
+            break;
+
+        case 'admin-ajouter':
+            require_once __DIR__ . '/controllers/AdminController.php';
+            (new AdminController())->ajouter();
+            break;
+
+        case 'admin-modifier':
+            require_once __DIR__ . '/controllers/AdminController.php';
+            (new AdminController())->modifier();
+            break;
+
+        case 'admin-supprimer':
+            require_once __DIR__ . '/controllers/AdminController.php';
+            (new AdminController())->supprimer();
+            break;
+            
         default:
             http_response_code(404);
             require __DIR__ . '/views/404.php';
