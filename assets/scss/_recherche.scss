@@ -1,0 +1,43 @@
+.recherche-barre {
+    background: $input-fill;
+    border-bottom: 1px solid rgba($navy, .1);
+
+    &__form {
+        max-width: 720px;
+        margin: 0 auto;
+        display: flex;
+        gap: 10px;
+        padding: 14px 20px;
+    }
+
+    &__input {
+        flex: 1;
+        font-family: $font-corps;
+        font-size: 16px;
+        padding: 12px 18px;
+        border: 1.5px solid $input-border;
+        border-radius: 24px;
+        background: #fff;
+        color: #20486a;
+
+        &::placeholder { color: #8FB3CC; }
+        &:focus {
+            outline: none;
+            border-color: $blue;
+            box-shadow: 0 0 0 3px rgba($blue, .18);
+        }
+    }
+
+    &__bouton {
+        font-family: $font-titre;
+        font-weight: 600;
+        color: #fff;
+        background: $blue;
+        border: none;
+        border-radius: 24px;
+        padding: 10px 22px;
+        cursor: pointer;
+
+        &:hover { background: $blue-dark; }
+    }
+}

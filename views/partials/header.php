@@ -1,5 +1,5 @@
-<?php ?>
 <?php $panierResume = panier_resume(); ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +29,10 @@
             </a>
 
             <div class="nav-icones order-lg-2">
-                <button class="btn p-0 border-0" aria-label="Rechercher"><svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round"/></svg></button>
+                <button class="btn p-0 border-0" type="button" aria-label="Rechercher"
+                        data-bs-toggle="collapse" data-bs-target="#barreRecherche" aria-controls="barreRecherche">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round"/></svg>
+                </button>
 
                 <?php if (est_connecte()): ?>
                     <a href="index.php?route=deconnexion" aria-label="Se déconnecter" title="Déconnexion (<?= e($_SESSION['prenom'] ?? '') ?>)">
@@ -67,4 +70,13 @@
 
         </div>
     </nav>
+
+    <div class="collapse recherche-barre" id="barreRecherche">
+        <form action="index.php" method="get" class="recherche-barre__form" role="search">
+            <input type="hidden" name="route" value="animaldex">
+            <input type="search" name="q" class="recherche-barre__input"
+                   placeholder="Chercher parmi les cartes..." aria-label="Chercher parmi les cartes">
+            <button type="submit" class="recherche-barre__bouton">Rechercher</button>
+        </form>
+    </div>
 </header>
