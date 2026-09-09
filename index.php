@@ -27,6 +27,11 @@ try {
             (new PageController())->cgv();
             break;
 
+        case 'faq':
+            require_once __DIR__ . '/controllers/PageController.php';
+            (new PageController())->faq();
+            break;
+
         case 'animaldex':
             require_once __DIR__ . '/controllers/ProduitController.php';
             (new ProduitController())->animaldex();
