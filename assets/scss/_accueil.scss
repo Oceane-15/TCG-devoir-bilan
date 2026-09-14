@@ -7,7 +7,14 @@
         height: auto;
     }
 
-    &__contenu {
+     @media (max-width: $bp-mobile) {
+        &__image {
+            height: 320px;        
+            object-fit: cover;    
+        }
+    }
+
+    &__contenu {     
         position: absolute;
         top: 12%;
         left: 50%;

@@ -1077,6 +1077,13 @@ main {
   width: 100%;
   height: auto;
 }
+@media (max-width: 720px) {
+  .hero__image {
+    height: 320px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
 .hero__contenu {
   position: absolute;
   top: 12%;
