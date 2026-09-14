@@ -7,12 +7,18 @@
         height: auto;
     }
 
-    &__contenu {
+     @media (max-width: $bp-mobile) {
+        &__image {
+            height: 320px;        
+            object-fit: cover;    
+        }
+    }
+
+    &__contenu {     
         position: absolute;
         top: 12%;
-        left: auto;
-        right: 25%;
-        transform: none;
+        left: 50%;
+        transform: translateX(-50%);
         text-align: center;
         color: #fff;
         width: 90%;

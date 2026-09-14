@@ -1077,12 +1077,18 @@ main {
   width: 100%;
   height: auto;
 }
+@media (max-width: 720px) {
+  .hero__image {
+    height: 320px;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
 .hero__contenu {
   position: absolute;
   top: 12%;
-  left: auto;
-  right: 25%;
-  transform: none;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   color: #fff;
   width: 90%;
